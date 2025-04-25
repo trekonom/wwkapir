@@ -56,7 +56,7 @@ regions <- wwk_list_region()
 
 # Retrieve data for one indicator and one region
 csv <- wwk_export(
-  indikator = "geburten",
+  indicator = "geburten",
   region = "koeln",
   year = 2020:2019
 )
@@ -89,7 +89,7 @@ library(readr)
 
 # Get data on births and deaths for Cologne and Munich
 csv <- wwk_export(
-  indikator = c("geburten", "sterbefaelle"),
+  indicator = c("geburten", "sterbefaelle"),
   region = c("koeln", "muenchen")
 )
 dat <- wwk_read_csv(csv)

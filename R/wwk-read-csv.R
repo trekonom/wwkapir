@@ -47,7 +47,8 @@ wwk_read_csv <- function(file,
     -"indicator",
     names_to = c("year", "region"),
     names_sep = "\n",
-    names_transform = list(year = as.integer)
+    names_transform = list(year = as.integer),
+    values_transform = list(value = as.numeric)
   )
 }
 
