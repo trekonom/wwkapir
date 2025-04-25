@@ -46,18 +46,31 @@ remotes::install_github("trekonom/rwwk")
 
 ## 🚀 Getting Started
 
-```r
+```{r}
 library(rwwk)
 
 # List available topics or indicators
-topics <- ww_list_topics()
-indicators <- ww_list_indicators()
+topics <- wwk_list_topic()
+indicators <- wwk_list_indicator()
+regions <- wwk_list_region()
 
 # Retrieve data for an indicator
-data <- wwk_get_data(indicator_id = "BEV001", region = "05315000", year = 2021)
+# Get data on births and deaths for Cologne and Munich
+csv <- wwk_export(
+  indikator = "geburten",
+  region = "koeln",
+  year = 2020:2019
+)
+
+# skip = 2: 
+# - The first 2 rows contain meta data, i.e. names of indicators and regions
+# n_max = 1: 
+# - The data is returned in wide format with one row per indicator
+# - Using n_max we can skip the additional meta data at the tail
+dat <- readr::read_csv2(csv, skip = 2, n_max = 1, show_col_types = FALSE) 
 
 # Explore the data
-head(data)
+head(dat)
 ```
 
 ---
@@ -88,7 +101,8 @@ csv <- wwk_export(
 
 # skip = 2: Skip first 2 rows which contain meta data
 # n_max = 2: Read only 2 rows which data on indicators to skip meta data at the tail
-dat <- readr::read_csv2(csv, skip = 2, n_max = 2) |>
+dat <- readr::read_csv2(csv, skip = 2, n_max = 2, show_col_types = FALSE) |>
+  # Reshape to tidy format
   tidyr::pivot_longer(
     -Indikatoren,
     names_to = c("year", "region"),

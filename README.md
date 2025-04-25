@@ -44,14 +44,32 @@ remotes::install_github("trekonom/rwwk")
 library(rwwk)
 
 # List available topics or indicators
-topics <- ww_list_topics()
-indicators <- ww_list_indicators()
+topics <- wwk_list_topic()
+indicators <- wwk_list_indicator()
+regions <- wwk_list_region()
 
 # Retrieve data for an indicator
-data <- wwk_get_data(indicator_id = "BEV001", region = "05315000", year = 2021)
+# Get data on births and deaths for Cologne and Munich
+csv <- wwk_export(
+  indikator = "geburten",
+  region = "koeln",
+  year = 2020:2019
+)
+
+# skip = 2: 
+# - The first 2 rows contain meta data, i.e. names of indicators and regions
+# n_max = 1: 
+# - The data is returned in wide format with one row per indicator
+# - Using n_max we can skip the additional meta data at the tail
+dat <- readr::read_csv2(csv, skip = 2, n_max = 1, show_col_types = FALSE) 
+#> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
 
 # Explore the data
-head(data)
+head(dat)
+#> # A tibble: 1 × 3
+#>   Indikatoren                         `2019\nKöln` `2020\nKöln`
+#>   <chr>                                      <dbl>        <dbl>
+#> 1 Geburten (je 1.000 Einwohner:innen)           11         10.7
 ```
 
 ------------------------------------------------------------------------
@@ -83,7 +101,8 @@ csv <- wwk_export(
 
 # skip = 2: Skip first 2 rows which contain meta data
 # n_max = 2: Read only 2 rows which data on indicators to skip meta data at the tail
-dat <- readr::read_csv2(csv, skip = 2, n_max = 2) |>
+dat <- readr::read_csv2(csv, skip = 2, n_max = 2, show_col_types = FALSE) |>
+  # Reshape to tidy format
   tidyr::pivot_longer(
     -Indikatoren,
     names_to = c("year", "region"),
@@ -91,20 +110,6 @@ dat <- readr::read_csv2(csv, skip = 2, n_max = 2) |>
     names_transform = list(year = as.integer)
   )
 #> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
-#> Rows: 2 Columns: 17
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ";"
-#> chr  (1): Indikatoren
-#> dbl (16): 2015
-#> Köln, 2015
-#> München, 2016
-#> Köln, 2016
-#> München, 2017
-#> Köln, 2017
-#> ...
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 years <- paste(range(dat$year), collapse = " bis ")
 ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
@@ -117,7 +122,7 @@ ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ------------------------------------------------------------------------
 
