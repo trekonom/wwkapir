@@ -13,6 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+<div align="center">
+
+<a href='https://trekonom.github.io/rwwk/'><img src="man/figures/logo.png" height="300px"/></a>
+
+</div>
+
 # 📦 rwwk
 
 **rwwk** is an R package that provides functions to connect to and retrieve data from the [Wegweiser Kommune Open Data REST API](https://www.wegweiser-kommune.de/open-data). It simplifies accessing municipal data for analysis, research, or reporting purposes.
@@ -31,7 +37,6 @@ knitr::opts_chunk$set(
 - 🔍 Search for available datasets, indicators, and metadata
 - 🏙 Retrieve data for specific municipalities or time periods
 - 📊 Return results as tidy `data.frame`s or tibbles
-- 🔄 Built-in support for pagination and error handling
 
 ---
 

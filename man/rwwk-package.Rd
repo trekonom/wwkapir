@@ -6,6 +6,8 @@
 \alias{rwwk-package}
 \title{rwwk: Access the Wegweiser Kommune (WWK) Open Data API}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Provides convenient access to the open municipal datasets from Wegweiser Kommune.
 }
 \seealso{

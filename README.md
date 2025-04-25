@@ -1,6 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<div align="center">
+
+<a href='https://trekonom.github.io/rwwk/'><img src="man/figures/logo.png" height="300px"/></a>
+
+</div>
+
 # 📦 rwwk
 
 **rwwk** is an R package that provides functions to connect to and
@@ -25,7 +31,6 @@ demography, education, finances, health, and sustainability.
 - 🔍 Search for available datasets, indicators, and metadata
 - 🏙 Retrieve data for specific municipalities or time periods
 - 📊 Return results as tidy `data.frame`s or tibbles
-- 🔄 Built-in support for pagination and error handling
 
 ------------------------------------------------------------------------
 
