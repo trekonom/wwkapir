@@ -4,7 +4,7 @@
 \name{rwwk-package}
 \alias{rwwk}
 \alias{rwwk-package}
-\title{rwwk: Access Wegweiser Kommune Open Data API}
+\title{rwwk: Access the Wegweiser Kommune (WWK) Open Data API}
 \description{
 Provides convenient access to the open municipal datasets from Wegweiser Kommune.
 }

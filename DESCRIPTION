@@ -1,5 +1,5 @@
 Package: rwwk
-Title: Access Wegweiser Kommune Open Data API
+Title: Access the Wegweiser Kommune (WWK) Open Data API
 Version: 0.0.0.9000
 Authors@R: 
     person("Stefan", "Moog", , "moogs@gmx.de", role = c("aut", "cre"))
