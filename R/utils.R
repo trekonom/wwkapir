@@ -35,3 +35,31 @@ check_region_types <- function(x) {
   )
   match.arg(x, region_types, several.ok = TRUE)
 }
+
+#' Tidy content
+#'
+#' Utility functions to retuern API content as a tibble
+#'
+#' @name wwk-as-tibble
+
+#' @rdname wwk-as-tibble
+#' @noRd
+wwk_as_tibble_multi <- function(content) {
+  content_cleaned <- purrr::map(content, function(x) {
+    purrr::map(x, function(x) {
+      if (is.list(x)) list(unlist(x)) else x
+    })
+  })
+
+  purrr::map_dfr(content_cleaned, ~ tibble::tibble(!!!.x))
+}
+
+#' @rdname wwk-as-tibble
+#' @noRd
+wwk_as_tibble_single <- function(content) {
+  content_cleaned <- purrr::map(content, function(x) {
+    if (is.list(x)) list(unlist(x)) else x
+  })
+
+  tibble::tibble(!!!content_cleaned)
+}
