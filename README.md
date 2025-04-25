@@ -54,21 +54,21 @@ csv <- wwk_export(
   region = "koeln",
   year = 2020:2019
 )
-
-# skip = 2: 
-# - The first 2 rows contain meta data, i.e. names of indicators and regions
-# n_max = 1: 
-# - The data is returned in wide format with one row per indicator
-# - Using n_max = 1 we can skip the additional meta data at the tail
-dat <- readr::read_csv2(csv, skip = 2, n_max = 1, show_col_types = FALSE) 
+# Read data as a tidy tibble
+dat <- wwk_read_csv(csv)
 #> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
+#> Warning: One or more parsing issues, call `problems()` on your data frame for details,
+#> e.g.:
+#>   dat <- vroom(...)
+#>   problems(dat)
 
 # Explore the data
 head(dat)
-#> # A tibble: 1 × 3
-#>   Indikatoren                         `2019\nKöln` `2020\nKöln`
-#>   <chr>                                      <dbl>        <dbl>
-#> 1 Geburten (je 1.000 Einwohner:innen)           11         10.7
+#> # A tibble: 2 × 4
+#>   indicator                            year region value
+#>   <chr>                               <int> <chr>  <chr>
+#> 1 Geburten (je 1.000 Einwohner:innen)  2019 Köln   11   
+#> 2 Geburten (je 1.000 Einwohner:innen)  2020 Köln   10.7
 ```
 
 ------------------------------------------------------------------------
@@ -97,21 +97,17 @@ csv <- wwk_export(
   indikator = c("geburten", "sterbefaelle"),
   region = c("koeln", "muenchen")
 )
-
-dat <- readr::read_csv2(csv, skip = 2, n_max = 2, show_col_types = FALSE) |>
-  # Reshape to tidy format
-  tidyr::pivot_longer(
-    -Indikatoren,
-    names_to = c("year", "region"),
-    names_sep = "\n",
-    names_transform = list(year = as.integer)
-  )
+dat <- wwk_read_csv(csv)
 #> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
+#> Warning: One or more parsing issues, call `problems()` on your data frame for details,
+#> e.g.:
+#>   dat <- vroom(...)
+#>   problems(dat)
 
 years <- paste(range(dat$year), collapse = " bis ")
 ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
   geom_line() +
-  facet_wrap(~Indikatoren) +
+  facet_wrap(~indicator) +
   labs(
     title = "Geburten und Sterbefälle",
     subtitle = sprintf("Köln und München, %s", years),

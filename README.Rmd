@@ -60,13 +60,8 @@ csv <- wwk_export(
   region = "koeln",
   year = 2020:2019
 )
-
-# skip = 2: 
-# - The first 2 rows contain meta data, i.e. names of indicators and regions
-# n_max = 1: 
-# - The data is returned in wide format with one row per indicator
-# - Using n_max = 1 we can skip the additional meta data at the tail
-dat <- readr::read_csv2(csv, skip = 2, n_max = 1, show_col_types = FALSE) 
+# Read data as a tidy tibble
+dat <- wwk_read_csv(csv)
 
 # Explore the data
 head(dat)
@@ -97,20 +92,12 @@ csv <- wwk_export(
   indikator = c("geburten", "sterbefaelle"),
   region = c("koeln", "muenchen")
 )
-
-dat <- readr::read_csv2(csv, skip = 2, n_max = 2, show_col_types = FALSE) |>
-  # Reshape to tidy format
-  tidyr::pivot_longer(
-    -Indikatoren,
-    names_to = c("year", "region"),
-    names_sep = "\n",
-    names_transform = list(year = as.integer)
-  )
+dat <- wwk_read_csv(csv)
 
 years <- paste(range(dat$year), collapse = " bis ")
 ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
   geom_line() +
-  facet_wrap(~Indikatoren) +
+  facet_wrap(~indicator) +
   labs(
     title = "Geburten und Sterbefälle",
     subtitle = sprintf("Köln und München, %s", years),

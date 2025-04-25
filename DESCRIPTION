@@ -13,7 +13,9 @@ Imports:
     httr2,
     jsonlite,
     purrr,
-    tibble
+    readr,
+    tibble,
+    tidyr
 URL: https://github.com/trekonom/rwwk
 BugReports: https://github.com/trekonom/rwwk/issues
 Suggests: 
