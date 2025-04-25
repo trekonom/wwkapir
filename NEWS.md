@@ -1,5 +1,8 @@
 # rwwk 0.0.0.9000
 
+* Add `wwk_suggest_xxx()` family of functions to get suggested values to filter
+  by demographic type, regional key, population range or region type.
+  
 * Add `wwk_read_csv_indicator()` to read csv data returned by 
   `wwk_export_indicator()` as a tidy tibble.
 
