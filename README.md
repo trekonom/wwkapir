@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# 📦 rbstwwk
+# 📦 rwwk
 
-**rbstwwk** is an R package that provides functions to connect to and
+**rwwk** is an R package that provides functions to connect to and
 retrieve data from the [Wegweiser Kommune Open Data REST
 API](https://www.wegweiser-kommune.de/open-data). It simplifies
 accessing municipal data for analysis, research, or reporting purposes.
@@ -33,7 +33,7 @@ demography, education, finances, health, and sustainability.
 
 ``` r
 # From GitHub (requires devtools or remotes)
-remotes::install_github("trekonom/rbstwwk")
+remotes::install_github("trekonom/rwwk")
 ```
 
 ------------------------------------------------------------------------
@@ -41,7 +41,7 @@ remotes::install_github("trekonom/rbstwwk")
 ## 🚀 Getting Started
 
 ``` r
-library(rbstwwk)
+library(rwwk)
 
 # List available topics or indicators
 topics <- ww_list_topics()
@@ -70,7 +70,7 @@ head(data)
 ## 🧪 Example Use Case
 
 ``` r
-library(rbstwwk)
+library(rwwk)
 library(ggplot2)
 library(tidyr)
 library(readr)

@@ -1,4 +1,4 @@
-Package: rbstwwk
+Package: rwwk
 Title: Access Wegweiser Kommune Open Data API
 Version: 0.0.0.9000
 Authors@R: 
@@ -14,5 +14,5 @@ Imports:
     jsonlite,
     purrr,
     tibble
-URL: https://github.com/trekonom/rbstwwk
-BugReports: https://github.com/trekonom/rbstwwk/issues
+URL: https://github.com/trekonom/rwwk
+BugReports: https://github.com/trekonom/rwwk/issues
