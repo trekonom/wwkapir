@@ -3,14 +3,14 @@
 #' Exports the statistical data for the specified 'Friendly URL' in the desired
 #'    format.
 #'
-#' @param indikator a character vector fiendly indicator URLs
+#' @param indicator a character vector fiendly indicator URLs
 #' @param region a character vector of fiendly region URLs
 #' @param year a character. Years for which data should be retrieved.
 #' @param charset encoding to be used. Defaults to `UTF-8`.
 #' @param format format in which data shgould be returned. One of `csv` or `json`.
 #' @param verbose be verbose
 #'
-#' @return A data.frame.
+#' @return a character (csv) or a list (json)
 #'
 #' @name wwk-export
 #'
@@ -18,13 +18,13 @@
 #' \dontrun{
 #' # Search for indicators
 #' wwk_export(
-#'   indikator = "geburten",
+#'   indicator = "geburten",
 #'   region = "koeln",
 #'   year = "2024"
 #' )
 #' # Multiple indiciators, regions and years
 #' wwk_export(
-#'   indikator = c("geburten", "sterbefaelle")
+#'   indicator = c("geburten", "sterbefaelle"),
 #'   region = c("koeln", "muenchen"),
 #'   year = "2000-2024"
 #' )
@@ -32,7 +32,7 @@
 
 #' @rdname wwk-export
 #' @export
-wwk_export <- function(indikator = NULL,
+wwk_export <- function(indicator = NULL,
                        region = NULL,
                        year = NULL,
                        format = "csv",
@@ -40,10 +40,10 @@ wwk_export <- function(indikator = NULL,
                        verbose = FALSE) {
   format <- check_export_format(format)
 
-  indikator <- paste(indikator, collapse = "+")
+  indicator <- paste(indicator, collapse = "+")
   region <- paste(region, collapse = "+")
   year <- paste(year, collapse = "+")
-  path_append <- paste(indikator, region, year, sep = "+")
+  path_append <- paste(indicator, region, year, sep = "+")
   path_append <- paste0(
     path_append,
     "+tabelle.",
