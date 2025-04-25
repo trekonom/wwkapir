@@ -14,9 +14,10 @@
 #'    * All further columns contain the data for a region-year pair.
 #'
 #' @inheritParams readr::read_csv2
-#
+#'
+#' @name wwk-read-csv
+#'
 #' @returns a tibble
-#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -26,6 +27,9 @@
 #' )
 #' wwk_read_csv(csv)
 #' }
+
+#' @rdname wwk-read-csv
+#' @export
 wwk_read_csv <- function(file,
                          skip = 2,
                          n_max = Inf,
@@ -47,29 +51,44 @@ wwk_read_csv <- function(file,
   )
 }
 
+#' @rdname wwk-read-csv
+#' @export
+wwk_read_csv_indicator <- function(file,
+                                   skip = 2,
+                                   n_max = Inf,
+                                   show_col_types = FALSE) {
+  dat <- readr::read_csv2(
+    file,
+    skip = skip,
+    n_max = n_max,
+    show_col_types = show_col_types
+  )
+  dat <- remove_rows_not_na_col(dat)
+
+  dat
+}
+
 # Copy & Paste from tblcleanr::remove_rows_not_na_col
-remove_rows_not_na_col <- function (x, col = 1, rows = NULL, .direction = "up")
-{
-    x[] <- lapply(x, as.character)
-    if (is.character(rows)) {
-        rows <- which(grepl(rows, x[, 1, drop = TRUE]))
-        if (.direction == "down") {
-            rows <- seq(max(rows), nrow(x), 1)
-        }
-        else {
-            rows <- seq(max(rows))
-        }
+remove_rows_not_na_col <- function(x, col = 1, rows = NULL, .direction = "up") {
+  x[] <- lapply(x, as.character)
+  if (is.character(rows)) {
+    rows <- which(grepl(rows, x[, 1, drop = TRUE]))
+    if (.direction == "down") {
+      rows <- seq(max(rows), nrow(x), 1)
+    } else {
+      rows <- seq(max(rows))
     }
-    if (is.numeric(rows)) {
-        is_row_drop <- seq(nrow(x)) %in% rows
-    }
-    else {
-        is_row_drop <- rep(TRUE, nrow(x))
-    }
-    x <- cbind(is_row_drop, x)
-    cols <- setdiff(seq_along(names(x)), c(1, col + 1))
-    x <- x[!(is_row_drop & rowSums(is.na(x[cols])) == length(cols)),
-        , drop = FALSE]
-    x[["is_row_drop"]] <- NULL
-    x
+  }
+  if (is.numeric(rows)) {
+    is_row_drop <- seq(nrow(x)) %in% rows
+  } else {
+    is_row_drop <- rep(TRUE, nrow(x))
+  }
+  x <- cbind(is_row_drop, x)
+  cols <- setdiff(seq_along(names(x)), c(1, col + 1))
+  x <- x[!(is_row_drop & rowSums(is.na(x[cols])) == length(cols)), ,
+    drop = FALSE
+  ]
+  x[["is_row_drop"]] <- NULL
+  x
 }
