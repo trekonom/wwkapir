@@ -48,8 +48,7 @@ topics <- wwk_list_topic()
 indicators <- wwk_list_indicator()
 regions <- wwk_list_region()
 
-# Retrieve data for an indicator
-# Get data on births and deaths for Cologne and Munich
+# Retrieve data for one indicator and one region
 csv <- wwk_export(
   indikator = "geburten",
   region = "koeln",
@@ -60,7 +59,7 @@ csv <- wwk_export(
 # - The first 2 rows contain meta data, i.e. names of indicators and regions
 # n_max = 1: 
 # - The data is returned in wide format with one row per indicator
-# - Using n_max we can skip the additional meta data at the tail
+# - Using n_max = 1 we can skip the additional meta data at the tail
 dat <- readr::read_csv2(csv, skip = 2, n_max = 1, show_col_types = FALSE) 
 #> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
 
@@ -99,8 +98,6 @@ csv <- wwk_export(
   region = c("koeln", "muenchen")
 )
 
-# skip = 2: Skip first 2 rows which contain meta data
-# n_max = 2: Read only 2 rows which data on indicators to skip meta data at the tail
 dat <- readr::read_csv2(csv, skip = 2, n_max = 2, show_col_types = FALSE) |>
   # Reshape to tidy format
   tidyr::pivot_longer(
@@ -130,7 +127,3 @@ ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
 
 This package wraps the REST API documented here:  
 📖 <https://www.wegweiser-kommune.de/open-data>
-
-You can optionally set an API key (if needed) using environment
-variables or a config file. (Currently, the API appears to be
-open-access without authentication.)
