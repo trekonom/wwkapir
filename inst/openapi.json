@@ -3,7 +3,7 @@
   "info" : {
     "title" : "Bertelsmann Stiftung - Wegweiser Kommune - Data API",
     "description" : "Bietet eine offene Schnittstelle, um die statistischen Daten des Wegweiser Kommune nebst deren Metadaten zu erhalten.",
-    "version" : "${project.version}"
+    "version" : "2.9.2"
   },
   "servers" : [ {
     "url" : "/data-api"

@@ -16,3 +16,5 @@ Imports:
     tibble
 URL: https://github.com/trekonom/rwwk
 BugReports: https://github.com/trekonom/rwwk/issues
+Suggests: 
+    listviewer
