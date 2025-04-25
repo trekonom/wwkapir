@@ -5,6 +5,11 @@
 #'
 #' @param what a character. One of `"indicator"`, `"topic"` or `"region"`
 #' @param max maximum number of results to return
+#' @param exclude a character. Optional list of IDs of indicators, topics or
+#'    regions to exclude.
+#' @param search a character. Optional search text to look for indicators,
+#'    topics or regions.
+#' @param types a character. Optional list of region types to include in the search.
 #' @param ... additional parameters
 #' @param verbose be verbose
 #'
@@ -46,12 +51,11 @@ wwk_list <- function(what, max = 10, ..., verbose = FALSE) {
   req <- req_method(req, "GET")
 
   if (verbose) {
-    print(httr2::req_dry_run(req))
+    print(req_dry_run(req))
   }
   resp <- req_perform(req)
 
-  resp <- httr2::req_perform(req)
-  content <- httr2::resp_body_json(resp)
+  content <- resp_body_json(resp)
 
   content_cleaned <- purrr::map(content, function(x) {
     purrr::map(x, function(x) {
@@ -64,18 +68,49 @@ wwk_list <- function(what, max = 10, ..., verbose = FALSE) {
 
 #' @rdname wwk-list
 #' @export
-wwk_list_indicator <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("indicator", max = max, ..., verbose = verbose)
+wwk_list_indicator <- function(max = 10,
+                               exclude = NULL,
+                               search = NULL,
+                               verbose = FALSE) {
+  wwk_list(
+    "indicator",
+    max = max,
+    exclude = exclude,
+    search = search,
+    verbose = verbose
+  )
 }
 
 #' @rdname wwk-list
 #' @export
-wwk_list_topic <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("topic", max = max, ..., verbose = verbose)
+wwk_list_topic <- function(max = 10,
+                           exclude = NULL,
+                           search = NULL,
+                           verbose = FALSE) {
+  wwk_list(
+    "topic",
+    max = max,
+    exclude = exclude,
+    search = search,
+    verbose = verbose
+  )
 }
 
 #' @rdname wwk-list
 #' @export
-wwk_list_region <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("region", max = max, ..., verbose = verbose)
+wwk_list_region <- function(max = 10,
+                            exclude = NULL,
+                            search = NULL,
+                            types = NULL,
+                            verbose = FALSE) {
+  types <- check_region_types(types)
+
+  wwk_list(
+    "region",
+    max = max,
+    exclude = exclude,
+    search = search,
+    types = types,
+    verbose = verbose
+  )
 }

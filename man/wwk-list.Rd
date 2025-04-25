@@ -10,11 +10,17 @@
 \usage{
 wwk_list(what, max = 10, ..., verbose = FALSE)
 
-wwk_list_indicator(max = 10, ..., verbose = FALSE)
+wwk_list_indicator(max = 10, exclude = NULL, search = NULL, verbose = FALSE)
 
-wwk_list_topic(max = 10, ..., verbose = FALSE)
+wwk_list_topic(max = 10, exclude = NULL, search = NULL, verbose = FALSE)
 
-wwk_list_region(max = 10, ..., verbose = FALSE)
+wwk_list_region(
+  max = 10,
+  exclude = NULL,
+  search = NULL,
+  types = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{what}{a character. One of \code{"indicator"}, \code{"topic"} or \code{"region"}}
@@ -24,6 +30,14 @@ wwk_list_region(max = 10, ..., verbose = FALSE)
 \item{...}{additional parameters}
 
 \item{verbose}{be verbose}
+
+\item{exclude}{a character. Optional list of IDs of indicators, topics or
+regions to exclude.}
+
+\item{search}{a character. Optional search text to look for indicators,
+topics or regions.}
+
+\item{types}{a character. Optional list of region types to include in the search.}
 }
 \value{
 A data.frame.
