@@ -36,7 +36,7 @@ wwk_list <- function(what, max = 10, ..., verbose = FALSE) {
   }
 
   req <- httr2::request(wwk_url())
-  req <- req_url_path_append(req, paste0("/rest/", what, "/list"))
+  req <- req_url_path_append(req, "rest", what, "list")
   req <- req_headers(
     req,
     "accept" = "application/json",
