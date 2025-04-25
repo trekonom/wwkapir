@@ -48,7 +48,7 @@ topics <- ww_list_topics()
 indicators <- ww_list_indicators()
 
 # Retrieve data for an indicator
-data <- ww_get_data(indicator_id = "BEV001", region = "05315000", year = 2021)
+data <- wwk_get_data(indicator_id = "BEV001", region = "05315000", year = 2021)
 
 # Explore the data
 head(data)
@@ -60,28 +60,64 @@ head(data)
 
 | Function | Description |
 |----|----|
-| `ww_list_topics()` | List available topic categories |
-| `ww_list_indicators()` | List all indicators with metadata |
-| `ww_get_data()` | Retrieve data for a specific indicator, region, and year |
-| `ww_get_regions()` | Get region codes and names |
-| `ww_get_metadata()` | Get detailed metadata for a given indicator |
+| `wwk_list_topic()` | List available topic categories |
+| `wwk_list_indicator()` | List all indicators with metadata |
+| `wwk_list_regions()` | List all regions with metadata |
+| `wwk_export()` | Retrieve data for specified indicators, regions, and years |
 
 ------------------------------------------------------------------------
 
 ## 🧪 Example Use Case
 
 ``` r
-# Retrieve and plot population data
+library(rbstwwk)
 library(ggplot2)
+library(tidyr)
+library(readr)
 
-bev <- ww_get_data("BEV001", region = "05315000", year = 2000:2022)
+# Get data on births and deaths for Cologne and Munich
+csv <- wwk_export(
+  indikator = c("geburten", "sterbefaelle"),
+  region = c("koeln", "muenchen")
+)
 
-ggplot(bev, aes(x = year, y = value)) +
+# skip = 2: Skip first 2 rows which contain meta data
+# n_max = 2: Read only 2 rows which data on indicators to skip meta data at the tail
+dat <- readr::read_csv2(csv, skip = 2, n_max = 2) |>
+  tidyr::pivot_longer(
+    -Indikatoren,
+    names_to = c("year", "region"),
+    names_sep = "\n",
+    names_transform = list(year = as.integer)
+  )
+#> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
+#> Rows: 2 Columns: 17
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ";"
+#> chr  (1): Indikatoren
+#> dbl (16): 2015
+#> Köln, 2015
+#> München, 2016
+#> Köln, 2016
+#> München, 2017
+#> Köln, 2017
+#> ...
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+years <- paste(range(dat$year), collapse = " bis ")
+ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
   geom_line() +
-  labs(title = "Population Over Time",
-       subtitle = "Region: Köln (05315000)",
-       x = "Year", y = "Population")
+  facet_wrap(~Indikatoren) +
+  labs(
+    title = "Geburten und Sterbefälle",
+    subtitle = sprintf("Köln und München, %s", years),
+    x = NULL, y = NULL
+  )
 ```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ------------------------------------------------------------------------
 
