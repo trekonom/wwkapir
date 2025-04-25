@@ -1,5 +1,8 @@
 # rwwk 0.0.0.9000
 
+* Add `wwk_demographic_types()` to get a list of available demographic types 
+  as a tidy tibble.
+
 * Add `wwk_read_csv()` to read csv data returned by the WWK API as a tidy tibble.
 
 * Add `wwk_get_xxx()` family of functions to retrieve meta data on a single

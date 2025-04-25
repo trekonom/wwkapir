@@ -38,7 +38,7 @@ wwk_export <- function(indikator = NULL,
                        format = "csv",
                        charset = "UTF-8",
                        verbose = FALSE) {
-  format <- set_export_format(format)
+  format <- check_export_format(format)
 
   indikator <- paste(indikator, collapse = "+")
   region <- paste(region, collapse = "+")
@@ -78,12 +78,4 @@ wwk_export <- function(indikator = NULL,
   }
 
   content
-}
-
-set_export_format <- function(x) {
-  match.arg(
-    x,
-    c("csv", "json")
-    #c("csv", "gif", "jpg", "json", "pdf", "png", "svg", "xls", "xlsx")
-  )
 }
