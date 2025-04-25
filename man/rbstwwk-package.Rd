@@ -4,12 +4,20 @@
 \name{rbstwwk-package}
 \alias{rbstwwk}
 \alias{rbstwwk-package}
-\title{rbstwwk: What the Package Does (One Line, Title Case)}
+\title{rbstwwk: Access Wegweiser Kommune Open Data API}
 \description{
-What the package does (one paragraph).
+Provides convenient access to the open municipal datasets from Wegweiser Kommune.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/trekonom/rbstwwk}
+  \item Report bugs at \url{https://github.com/trekonom/rbstwwk/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Stefan Moog \email{stefan.moog@prognos.com}
+\strong{Maintainer}: Stefan Moog \email{moogs@gmx.de}
 
 }
 \keyword{internal}
