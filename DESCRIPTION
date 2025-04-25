@@ -1,0 +1,16 @@
+Package: rbstwwk
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("Stefan", "Moog", , "stefan.moog@prognos.com", role = c("aut", "cre"))
+Maintainer: Stefan Moog <stefan.moog@prognos.com>
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    httr2,
+    jsonlite,
+    purrr,
+    tibble

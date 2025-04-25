@@ -1,0 +1,95 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# 📦 rbstwwk
+
+**rbstwwk** is an R package that provides functions to connect to and
+retrieve data from the [Wegweiser Kommune Open Data REST
+API](https://www.wegweiser-kommune.de/open-data). It simplifies
+accessing municipal data for analysis, research, or reporting purposes.
+
+------------------------------------------------------------------------
+
+## 🔍 What is Wegweiser Kommune?
+
+[Wegweiser Kommune](https://www.wegweiser-kommune.de/) is an initiative
+by the Bertelsmann Stiftung offering open data and information to
+support local authorities in Germany. It covers topics such as
+demography, education, finances, health, and sustainability.
+
+------------------------------------------------------------------------
+
+## ✨ Features
+
+- 📡 Simple functions to query the REST API
+- 🔍 Search for available datasets, indicators, and metadata
+- 🏙 Retrieve data for specific municipalities or time periods
+- 📊 Return results as tidy `data.frame`s or tibbles
+- 🔄 Built-in support for pagination and error handling
+
+------------------------------------------------------------------------
+
+## 🛠 Installation
+
+``` r
+# From GitHub (requires devtools or remotes)
+remotes::install_github("trekonom/rbstwwk")
+```
+
+------------------------------------------------------------------------
+
+## 🚀 Getting Started
+
+``` r
+library(rbstwwk)
+
+# List available topics or indicators
+topics <- ww_list_topics()
+indicators <- ww_list_indicators()
+
+# Retrieve data for an indicator
+data <- ww_get_data(indicator_id = "BEV001", region = "05315000", year = 2021)
+
+# Explore the data
+head(data)
+```
+
+------------------------------------------------------------------------
+
+## 📚 Available Functions
+
+| Function | Description |
+|----|----|
+| `ww_list_topics()` | List available topic categories |
+| `ww_list_indicators()` | List all indicators with metadata |
+| `ww_get_data()` | Retrieve data for a specific indicator, region, and year |
+| `ww_get_regions()` | Get region codes and names |
+| `ww_get_metadata()` | Get detailed metadata for a given indicator |
+
+------------------------------------------------------------------------
+
+## 🧪 Example Use Case
+
+``` r
+# Retrieve and plot population data
+library(ggplot2)
+
+bev <- ww_get_data("BEV001", region = "05315000", year = 2000:2022)
+
+ggplot(bev, aes(x = year, y = value)) +
+  geom_line() +
+  labs(title = "Population Over Time",
+       subtitle = "Region: Köln (05315000)",
+       x = "Year", y = "Population")
+```
+
+------------------------------------------------------------------------
+
+## ⚙️ API Reference
+
+This package wraps the REST API documented here:  
+📖 <https://www.wegweiser-kommune.de/open-data>
+
+You can optionally set an API key (if needed) using environment
+variables or a config file. (Currently, the API appears to be
+open-access without authentication.)
