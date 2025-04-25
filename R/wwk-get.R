@@ -36,18 +36,13 @@ wwk_get <- function(what, friendly_url, verbose = FALSE) {
   req <- req_method(req, "GET")
 
   if (verbose) {
-    print(httr2::req_dry_run(req))
+    print(req_dry_run(req))
   }
   resp <- req_perform(req)
 
-  resp <- httr2::req_perform(req)
-  content <- httr2::resp_body_json(resp)
+  content <- resp_body_json(resp)
 
-  content_cleaned <- purrr::map(content, function(x) {
-    if (is.list(x)) list(unlist(x)) else x
-  })
-
-  tibble::tibble(!!!content_cleaned)
+  wwk_as_tibble_single(content)
 }
 
 #' @rdname wwk-get

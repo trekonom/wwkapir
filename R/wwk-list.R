@@ -57,13 +57,7 @@ wwk_list <- function(what, max = 10, ..., verbose = FALSE) {
 
   content <- resp_body_json(resp)
 
-  content_cleaned <- purrr::map(content, function(x) {
-    purrr::map(x, function(x) {
-      if (is.list(x)) list(unlist(x)) else x
-    })
-  })
-
-  purrr::map_dfr(content_cleaned, ~ tibble::tibble(!!!.x))
+  wwk_as_tibble_multi(content)
 }
 
 #' @rdname wwk-list
