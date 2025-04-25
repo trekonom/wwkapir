@@ -1,10 +1,10 @@
 Package: rbstwwk
-Title: What the Package Does (One Line, Title Case)
+Title: Access Wegweiser Kommune Open Data API
 Version: 0.0.0.9000
 Authors@R: 
-    person("Stefan", "Moog", , "stefan.moog@prognos.com", role = c("aut", "cre"))
-Maintainer: Stefan Moog <stefan.moog@prognos.com>
-Description: What the package does (one paragraph).
+    person("Stefan", "Moog", , "moogs@gmx.de", role = c("aut", "cre"))
+Maintainer: Stefan Moog <moogs@gmx.de>
+Description: Provides convenient access to the open municipal datasets from Wegweiser Kommune.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
