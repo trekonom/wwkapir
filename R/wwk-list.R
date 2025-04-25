@@ -65,17 +65,17 @@ wwk_list <- function(what, max = 10, ..., verbose = FALSE) {
 #' @rdname wwk-list
 #' @export
 wwk_list_indicator <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("indicator", ...)
+  wwk_list("indicator", max = max, ..., verbose = verbose)
 }
 
 #' @rdname wwk-list
 #' @export
 wwk_list_topic <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("topic", ...)
+  wwk_list("topic", max = max, ..., verbose = verbose)
 }
 
 #' @rdname wwk-list
 #' @export
 wwk_list_region <- function(max = 10, ..., verbose = FALSE) {
-  wwk_list("region", ...)
+  wwk_list("region", max = max, ..., verbose = verbose)
 }

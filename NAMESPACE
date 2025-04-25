@@ -2,6 +2,10 @@
 
 export(wwk_api)
 export(wwk_export)
+export(wwk_get)
+export(wwk_get_indicator)
+export(wwk_get_region)
+export(wwk_get_topic)
 export(wwk_list)
 export(wwk_list_indicator)
 export(wwk_list_region)
