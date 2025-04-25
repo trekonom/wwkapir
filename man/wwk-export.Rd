@@ -6,7 +6,7 @@
 \title{Export data}
 \usage{
 wwk_export(
-  indikator = NULL,
+  indicator = NULL,
   region = NULL,
   year = NULL,
   format = "csv",
@@ -15,7 +15,7 @@ wwk_export(
 )
 }
 \arguments{
-\item{indikator}{a character vector fiendly indicator URLs}
+\item{indicator}{a character vector fiendly indicator URLs}
 
 \item{region}{a character vector of fiendly region URLs}
 
@@ -28,7 +28,7 @@ wwk_export(
 \item{verbose}{be verbose}
 }
 \value{
-A data.frame.
+a character (csv) or a list (json)
 }
 \description{
 Exports the statistical data for the specified 'Friendly URL' in the desired
@@ -38,13 +38,13 @@ format.
 \dontrun{
 # Search for indicators
 wwk_export(
-  indikator = "geburten",
+  indicator = "geburten",
   region = "koeln",
   year = "2024"
 )
 # Multiple indiciators, regions and years
 wwk_export(
-  indikator = c("geburten", "sterbefaelle")
+  indicator = c("geburten", "sterbefaelle"),
   region = c("koeln", "muenchen"),
   year = "2000-2024"
 )
