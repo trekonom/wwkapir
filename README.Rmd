@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  dev = "CairoPNG"
 )
 ```
 
@@ -54,11 +55,17 @@ years <- paste(range(dat$year), collapse = " bis ")
 regions <- paste(unique(dat$region), collapse = " und ")
 ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
   geom_line() +
+  scale_color_manual(
+    values = c("#DC143C", "#87CEEB")
+  ) +
   facet_wrap(~indicator) +
+  theme_minimal() +
+  theme(legend.position = "top") +
   labs(
     title = "Geburten und Sterbefälle",
     subtitle = sprintf("%s, %s", regions, years),
-    x = NULL, y = NULL
+    x = NULL, y = NULL, color = NULL,
+    caption = "Quelle: Bertelsmann Stiftung/www.wegweiser-kommune.de"
   )
 ```
 
@@ -70,3 +77,13 @@ ggplot(dat, aes(x = year, y = value, color = region, group = region)) +
 
 This package wraps the REST API documented here:  
 📖 [https://www.wegweiser-kommune.de/open-data](https://www.wegweiser-kommune.de/open-data)
+
+## 📜 Terms of Use
+
+The data processed with this package originates from the platform [Wegweiser Kommune](https://www.wegweiser-kommune.de).  
+Please make sure to comply with the [Terms of Use](https://www.wegweiser-kommune.de/nutzungsbedingungen) when accessing or using data from this source.
+
+> The contents of Wegweiser Kommune are provided free of charge by the Bertelsmann Stiftung. Due to different licensing conditions of the underlying raw data, which are supplied by various data holders, the indicators are made available under the [Data License Germany – Attribution – Version 2.0](https://www.govdata.de/dl-de/by-2-0).  
+Reproduction and distribution, even in part, must always include the source attribution: **"Bertelsmann Stiftung/www.wegweiser-kommune.de"**.
+
+Users are responsible for ensuring that their use of the data adheres to these conditions.
