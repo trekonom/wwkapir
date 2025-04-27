@@ -1,6 +1,6 @@
-#' List available data topics, indicators and regions
+#' Get Meta Data
 #'
-#' Retrieves a list of topics, indicators and regions from the
+#' Retrieves meta data on single topics, indicators and regions from the
 #'    Wegweiser Kommune Open Data API.
 #'
 #' @param what a character. One of `"indicator"`, `"topic"` or `"region"`
