@@ -14,6 +14,7 @@ Provides convenient access to the open municipal datasets from Wegweiser Kommune
 Useful links:
 \itemize{
   \item \url{https://github.com/trekonom/wwkapir}
+  \item \url{https://trekonom.github.io/wwkapir/}
   \item Report bugs at \url{https://github.com/trekonom/wwkapir/issues}
 }
 

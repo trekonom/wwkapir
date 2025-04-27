@@ -1,5 +1,7 @@
 # wwkapir 0.0.0.9000
 
+* Add pkgdown website.
+
 * Add `wwk_suggest_xxx()` family of functions to get suggested values to filter
   by demographic type, regional key, population range or region type.
   

@@ -1,0 +1,40 @@
+url: https://trekonom.github.io/wwkapir/
+template:
+  bootstrap: 5
+reference:
+- title: Export
+  desc: |
+    Export data and meta data.
+  contents:
+  - matches("^wwk_export")
+- title: Load
+  desc: |
+    Read exported data as a tidy tibble
+  contents:
+  - matches("^wwk_read_csv")
+- title: List
+  desc: |
+    List available data topics, indicators and regions.
+  contents:
+  - matches("^wwk_list")
+- title: Get
+  desc: |
+    Get meta data on single topics, indicators and regions.
+  contents:
+  - matches("^wwk_get")
+- title: Suggest
+  desc: |
+    Get a list of suggested values to filter by demographic type,
+    regional key, population range or region type.
+  contents:
+  - matches("^wwk_suggest")
+- title: Demographic Types
+  desc: |
+    Get a list of demographic types.
+  contents:
+  - wwk_demographic_types
+- title: API
+  desc: |
+    Get or browse the API specification.
+  contents:
+  - wwk_api
