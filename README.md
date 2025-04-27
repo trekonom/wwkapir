@@ -3,11 +3,11 @@
 
 <div align="center">
 
-<a href='https://trekonom.github.io/rwwk/'><img src="man/figures/logo.png" height="350px"/></a>
+<a href='https://trekonom.github.io/wwkapir/'><img src="man/figures/logo.png" height="350px"/></a>
 
 </div>
 
-📦 **rwwk** is an R package that provides functions to connect to and
+📦 **wwkapir** is an R package that provides functions to connect to and
 retrieve data from the [Wegweiser Kommune Open Data REST
 API](https://www.wegweiser-kommune.de/open-data). It simplifies
 accessing municipal data for analysis, research, or reporting purposes.
@@ -23,7 +23,7 @@ accessing municipal data for analysis, research, or reporting purposes.
 
 ``` r
 # From GitHub (requires devtools or remotes)
-remotes::install_github("trekonom/rwwk")
+remotes::install_github("trekonom/wwkapir")
 ```
 
 ## 🚀 Getting Started
@@ -33,7 +33,7 @@ Cologne and Munich, tidying the retrieved data and visualizing the data
 using `ggplot2`:
 
 ``` r
-library(rwwk)
+library(wwkapir)
 library(ggplot2)
 
 # Get data on births and deaths for Cologne and Munich

@@ -9,7 +9,7 @@
 #' wwk_api()
 wwk_api <- function() {
   desc <- jsonlite::read_json(
-    system.file("openapi.json", package = "rwwk")
+    system.file("openapi.json", package = "wwkapir")
   )
   if (requireNamespace("listviewer")) {
     listviewer::jsonedit(desc)
