@@ -16,7 +16,7 @@ Imports:
     readr,
     tibble,
     tidyr
-URL: https://github.com/trekonom/wwkapir
+URL: https://github.com/trekonom/wwkapir, https://trekonom.github.io/wwkapir/
 BugReports: https://github.com/trekonom/wwkapir/issues
 Suggests: 
     listviewer

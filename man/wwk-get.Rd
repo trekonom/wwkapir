@@ -6,7 +6,7 @@
 \alias{wwk_get_indicator}
 \alias{wwk_get_topic}
 \alias{wwk_get_region}
-\title{List available data topics, indicators and regions}
+\title{Get Meta Data}
 \usage{
 wwk_get(what, friendly_url, verbose = FALSE)
 
@@ -27,7 +27,7 @@ wwk_get_region(region, verbose = FALSE)
 a tibble
 }
 \description{
-Retrieves a list of topics, indicators and regions from the
+Retrieves meta data on single topics, indicators and regions from the
 Wegweiser Kommune Open Data API.
 }
 \examples{
